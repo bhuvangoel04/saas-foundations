@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "base/meta.html" %}
+    {% include "base/css.html" %}
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+    <nav class="bg-white shadow p-4 mb-6">
+        <div class="container mx-auto">
+            <h2 class="text-xl font-bold">SaaS Foundations</h2>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% include "base/js.html" %}
+</body>
+</html>

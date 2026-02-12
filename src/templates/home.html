@@ -1,9 +1,15 @@
-<!DOCTYPE html>
-<head><title>{{ page_title }}</title> </head>
-<body>
-    <h1>W o r k i n g</h1>
-    Page visits: {{ page_visit_count }}
-    Total page visits: {{ total_page_visits }}
-    Percent visit: {{ percent }}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+{{ page_title }}
+{% endblock %}
+
+{% block content %}
+<div class="bg-white p-6 rounded shadow text-center">
+    <h1 class="text-2xl font-bold mb-4">Working</h1>
+
+    <p class="mb-2">Page visits: <strong>{{ page_visit_count }}</strong></p>
+    <p class="mb-2">Total page visits: <strong>{{ total_page_visits }}</strong></p>
+    <p class="mb-2">Percent visit: <strong>{{ percent }}</strong>%</p>
+</div>
+{% endblock %}
