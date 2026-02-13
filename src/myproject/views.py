@@ -12,7 +12,7 @@ def home_page_view(request, *args, **kwargs):
     my_title = "Home page"
     html_template = "home.html"
     try:
-        percent = ((page_qs.count()*100)/qs.count())
+        percent = round((page_qs.count() * 100) / qs.count(), 2)
     except:
         percent = 0
     mycontext = {
