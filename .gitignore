@@ -1,6 +1,11 @@
 venv
 ./venv
 
+# local-cdn
+local-cdn/
+# vendors-cdn
+src/static/vendors
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
