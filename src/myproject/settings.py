@@ -27,6 +27,7 @@ DEBUG = config("DJANGO_DEBUG", cast=bool)
 print("DEBUG", DEBUG, type(DEBUG))
 
 ALLOWED_HOSTS = [
+    "up.railway.app",
     ".railway.app" # https://saas.prod.railway.app
 ]
 if DEBUG:
