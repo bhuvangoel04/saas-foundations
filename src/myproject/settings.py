@@ -138,6 +138,8 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_BASE_DIRS = BASE_DIR / "static"
+# auto create the folder static if it does not exist
+STATICFILES_BASE_DIRS.mkdir(exist_ok=True, parents=True) 
 STATICFILES_VENDORS_DIRS = BASE_DIR / "static/vendors"
 
 # source(s) for python manage.py collectstatic
