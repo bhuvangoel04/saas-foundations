@@ -135,3 +135,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "static/"
+STATICFILES_BASE_DIRS = BASE_DIR / "static"
+STATICFILES_VENDORS_DIRS = BASE_DIR / "static/vendors"
+
+# source(s) for python manage.py collectstatic
+STATICFILES_DIRS = [
+    STATICFILES_BASE_DIRS
+]
+
+# output for python manage.py collectstatic
+# local-cdn
+STATIC_ROOT = BASE_DIR / "local-cdn"
+
+## when moving to production
+# if not DEBUG:
+#     STATIC_ROOT = BASE_DIR / "prod-cdn"

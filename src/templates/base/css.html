@@ -1,6 +1,2 @@
-<!-- Tailwind CDN FIRST -->
-<script src="https://cdn.tailwindcss.com"></script>
-<!-- Flowbite CSS -->
-<link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
-
-{% block extra_css %}{% endblock %}
+{% load static %}
+<link href="{% static 'vendors/flowbite.min.css' %}" rel="stylesheet"/>
