@@ -54,6 +54,9 @@ ENV DJANGO_DEBUG=${DJANGO_DEBUG}
 # download all vendor files locally before pushing for production
 RUN python manage.py vendor_pull
 RUN python manage.py collectstatic --noinput
+# whitenoise -> s3
+
+
 
 # set the Django default project name
 ARG PROJ_NAME="myproject"
