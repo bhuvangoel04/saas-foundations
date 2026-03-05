@@ -148,6 +148,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Django allauth config
+LOGIN_REDIRECT_URL = "/"
 ACCOUNT_LOGIN_METHODS = {'email', "username"} # username or email
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*'] #asterisk in req fields
 AUTHENTICATION_BACKENDS = [
