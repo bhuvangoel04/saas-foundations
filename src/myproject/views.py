@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from visits.models import PageVisit
 
 def home_page_view(request, *args, **kwargs):
@@ -22,3 +23,17 @@ def home_page_view(request, *args, **kwargs):
         "page_visit_count": page_qs.count(), # counts all the page visit objects created i.e. is no. of page visits
     }
     return render(request, html_template, mycontext)
+
+VALID_CODE = "abc123"
+
+def pw_protected_view(request, *args, **kwargs):
+    is_allowed = request.session.get('protected_page_allowed') or 0
+    # print(request.session.get('protected_page_allowed'), type)
+    if(request.method == "POST"):
+        user_pw_sent = request.POST.get("code") or None
+        if user_pw_sent == VALID_CODE:
+            is_allowed=1
+            request.session['protected_page_allowed'] = 1
+    if is_allowed:
+        return render(request, "protected/view.html", {})
+    return render(request, "protected/entry.html", {})
