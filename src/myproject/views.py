@@ -4,6 +4,11 @@ from django.contrib.auth.decorators import login_required
 from visits.models import PageVisit
 
 def home_page_view(request, *args, **kwargs):
+    if request.user.is_authenticated:
+        print(request.user.first_name)
+    return about_view(request, *args, **kwargs)
+
+def about_view(request, *args, **kwargs):
     # return HttpResponse("<h1>Working</h1>")
     path=request.path
     print(path)
@@ -37,3 +42,8 @@ def pw_protected_view(request, *args, **kwargs):
     if is_allowed:
         return render(request, "protected/view.html", {})
     return render(request, "protected/entry.html", {})
+
+@login_required
+def user_only_view(request, *args, **kwargs):
+    # print(request.user.is_staff)
+    return render(request, "protected/user-only.html", {})
