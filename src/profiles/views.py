@@ -15,7 +15,15 @@ def profile_list_view(request):
 @login_required
 def profile_detail_view(request,username=None, *args, **kwargs):
     user = request.user # logged in user
-
+    print(
+        user.has_perm("subscriptions.free"),
+        user.has_perm("subscriptions.plus"),
+        user.has_perm("subscriptions.premium")
+    )
+    # user_groups = user.groups.all()
+    # print("user groups:", user_groups)
+    # if user_groups.filter(name__icontains='free').exists():
+    #     return HttpResponse("Congrats")
     profile_user_obj = get_object_or_404(User, username=username) # username is username of user whose profile the logged in user is viewing (entered in the url)
     is_me = profile_user_obj == user
     context = {
