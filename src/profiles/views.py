@@ -8,6 +8,14 @@ User = get_user_model()
 @login_required
 def profile_view(request,username=None, *args, **kwargs):
     user = request.user # logged in user
+    print('user.has_perm("auth.view_user")', user.has_perm("auth.view_user"))
+    print('user.has_perm("visits.view_pagevisit")', user.has_perm("auth.view_pagevisit"))
+    # user perms codenames and lables
+    # <app_label>.view_<model_name>
+    # <app_label>.add_<model_name>
+    # <app_label>.change_<model_name>
+    # <app_label>.delete_<model_name>
+    
     # profile_user_obj = User.objects.get(username=username)
     profile_user_obj = get_object_or_404(User, username=username) # username is username of user whose profile the logged in user is viewing (entered in the url)
     is_me = profile_user_obj == user
