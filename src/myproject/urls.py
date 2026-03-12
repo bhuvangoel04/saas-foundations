@@ -36,5 +36,6 @@ urlpatterns = [
     path("protected/user_only/",user_only_view),
     path("protected/staff_only/",staff_only_view),
     path('accounts/', include('allauth.urls')), 
+    path('profiles/', include('profiles.urls')), # loads all urls from profiles app 
     path("admin/", admin.site.urls),
 ]
