@@ -12,11 +12,12 @@ if "rzp_test" in RAZORPAY_KEY_ID and DJANGO_DEBUG == False:
 
 client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_SECRET_KEY))
 
-def create_customer(name="", email="", raw=False):    
+def create_customer(name="", email="", notes={}, raw=False):    
     response = client.customer.create(
                 {
                     "name": name,
                     "email": email,
+                    "notes": notes
                 }
                 )
     if raw:
