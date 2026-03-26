@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings 
 import helpers.billing as billing
+from django.contrib.auth import get_user_model
 from allauth.account.signals import (
     user_signed_up as allauth_user_signedup,
     email_confirmed as allauth_email_confirmed
@@ -40,12 +41,13 @@ def allauth_user_signedup_handler(request, user, *args, **kwargs):
         init_email_confirmed=False
     )
 
-allauth_user_signedup.connect(allauth_user_signedup_handler)
+allauth_user_signedup.connect(allauth_user_signedup_handler, sender=get_user_model())
 
 # when email is confirmed
 def allauth_email_confirmed_handler(request, email_address, *args, **kwargs):
     qs =Customer.objects.filter( 
-        init_email=email_address, 
+        # email_address is an allauth EmailAddress instance, not a plain string
+        init_email=email_address.email, # .email extracts the string here 
         init_email_confirmed=False,
     )
     for obj in qs:
@@ -53,4 +55,4 @@ def allauth_email_confirmed_handler(request, email_address, *args, **kwargs):
         obj.save()
 
 
-allauth_email_confirmed.connect(allauth_email_confirmed_handler)
+allauth_email_confirmed.connect(allauth_email_confirmed_handler, sender=get_user_model())
