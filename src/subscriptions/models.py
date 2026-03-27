@@ -11,8 +11,14 @@ ALLOW_CUSTOM_GROUPS = True
 SUBSCRIPTION_PERMISSIONS = [
             ("premium", "Premium Perms" ), # subscriptions.premium
             ("plus", "Plus Perm"), # subscriptions.plus
-            ("free", "Free Perm") # subscriptions.free
+            ("custom", "Custom Perm"),   # subscriptions.custom
         ]
+
+#free tier - assign to all users on signup 
+#plus tier - Starter subscribers
+#premium tier - Premium subscribers
+#custom tier - Enterprise subscribers
+
 # Create your models here.
 class Subscription(models.Model):
     name = models.CharField(max_length=120)

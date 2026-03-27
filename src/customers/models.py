@@ -40,7 +40,7 @@ def allauth_user_signedup_handler(request, user, *args, **kwargs):
         init_email=email, 
         init_email_confirmed=False
     )
-
+    
 allauth_user_signedup.connect(allauth_user_signedup_handler, sender=get_user_model())
 
 # when email is confirmed
@@ -53,6 +53,11 @@ def allauth_email_confirmed_handler(request, email_address, *args, **kwargs):
     for obj in qs:
         obj.init_email_confirmed = True
         obj.save()
+        # add user to free tier once the email is confirmed
+        user = obj.user
+        free_tier = Group.objects.get(name="free tier")
 
+        if not user.groups.filter(name="free tier").exists():
+            user.groups.add(free_tier)
 
 allauth_email_confirmed.connect(allauth_email_confirmed_handler, sender=get_user_model())
