@@ -87,9 +87,9 @@ class SubscriptionPrice(models.Model):
 
     price = models.DecimalField(max_digits=10, decimal_places=2, default=999.00)
 
-    order = models.IntegerField(default=-1, help_text="Ordering on pricing page")
+    order = models.IntegerField(default=-1, help_text="Ordering on pricing page") # order on pricing page that is order free->premium->plus
 
-    featured = models.BooleanField(default=True, help_text="Featured on pricing page")
+    featured = models.BooleanField(default=True, help_text="Featured on pricing page") # Like recommended/featured plan
 
     updated = models.DateTimeField(auto_now=True)
 
