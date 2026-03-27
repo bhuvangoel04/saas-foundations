@@ -18,12 +18,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from auth import views as auth_views
+from subscriptions import views as subscription_views
 from .views import (
     home_page_view, 
     pw_protected_view,
     user_only_view,
     about_view,
-    staff_only_view
+    staff_only_view,
     )
 
 urlpatterns = [
@@ -38,4 +39,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')), 
     path('profiles/', include('profiles.urls')), # loads all urls from profiles app 
     path("admin/", admin.site.urls),
+    path("pricing/",subscription_views.subscription_price_view, name="pricing"),
 ]
