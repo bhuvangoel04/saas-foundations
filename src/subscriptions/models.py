@@ -95,6 +95,9 @@ class SubscriptionPrice(models.Model):
 
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    def get_checkout_url(self):
+        return reverse("checkout_sub_price", kwargs={"price_id": self.id})
+
     @property
 
     def razorpay_interval(self):

@@ -6,6 +6,7 @@ from allauth.account.signals import (
     user_signed_up as allauth_user_signedup,
     email_confirmed as allauth_email_confirmed
 )
+
 # Create your models here.
 
 User = settings.AUTH_USER_MODEL

@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from auth import views as auth_views
 from subscriptions import views as subscription_views
+from checkouts import views as checkout_views
 from .views import (
     home_page_view, 
     pw_protected_view,
@@ -29,6 +30,7 @@ from .views import (
 
 urlpatterns = [
     path("",home_page_view, name="home"), #index page -> root page
+    path("checkout/sub-price/<str:price_id>/", checkout_views.product_price_redirect_view, name="checkout_sub_price"),
     path("login/", auth_views.login_view),
     path("register/", auth_views.register_view),
     path("working/",home_page_view),
