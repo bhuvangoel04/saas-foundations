@@ -2,6 +2,7 @@ from django.template.defaultfilters import default
 import razorpay
 from decouple import config
 from datetime import datetime
+import helpers.date_utils as date_utils
 
 DJANGO_DEBUG = config("DJANGO_DEBUG", default=False, cast=bool)
 RAZORPAY_SECRET_KEY = config("RAZORPAY_SECRET_KEY", default="", cast=str)
@@ -69,6 +70,19 @@ def create_plan(
     if raw:
         return response
     return response.get("id")  # "plan_XXXX"
+
+def create_subscription(plan_id, customer_id=None, total_count=12, raw=False):
+    data = {
+        "plan_id": plan_id,
+        "total_count": total_count,
+        "customer_notify": 1
+    }
+    if customer_id:
+        data["customer_id"] = customer_id
+    response = client.subscription.create(data)
+    if raw:
+        return response
+    return response
 
 def get_subscription(razorpay_sub_id, raw=False):
     """

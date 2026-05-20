@@ -1,0 +1,39 @@
+{% extends "allauth/layouts/base.html" %}
+{% load i18n %}
+{% load allauth %}
+
+{% block head_title %}Sign Out - SaaS Foundations{% endblock %}
+
+{% block content %}
+<div class="min-h-[80vh] flex items-center justify-center px-4 py-12">
+    <div class="w-full max-w-sm relative">
+        <!-- Background glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-rose-500/5 rounded-full blur-[80px] pointer-events-none"></div>
+
+        <div class="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl shadow-2xl p-8 text-center relative z-10 backdrop-blur-md">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-rose-500/10 text-rose-400 rounded-full mb-6">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                </svg>
+            </div>
+
+            <h1 class="text-2xl font-extrabold text-white mb-2">{% trans "Sign Out" %}</h1>
+            <p class="text-zinc-400 text-sm mb-8">
+                {% trans "Are you sure you want to sign out of your account?" %}
+            </p>
+
+            <form method="POST" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                {{ redirect_field }}
+                <button type="submit" class="w-full bg-rose-500 hover:bg-rose-400 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-rose-500/10 hover:shadow-rose-500/20 transition-all duration-200 text-sm mb-3">
+                    {% trans "Yes, Sign Me Out" %}
+                </button>
+            </form>
+
+            <a href="/" class="block w-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-semibold py-3 rounded-xl border border-zinc-700 transition duration-200 text-sm">
+                {% trans "Cancel" %}
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

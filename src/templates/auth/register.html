@@ -1,13 +1,62 @@
 {% extends "base.html" %}
 
+{% block title %}
+Create Account - SaaS Foundations
+{% endblock %}
+
 {% block content %}
+<div class="max-w-md mx-auto py-12 px-4 relative">
+    <!-- Subtle Background Glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-emerald-500/5 rounded-full blur-[80px] pointer-events-none"></div>
 
-<form method="POST" action="/register/">
-    {% csrf_token %}
-    <input type="text" name="username" placeholder="Username">
-    <input type="text" name="email" placeholder="Your Email">
-    <input type="password" name="password" placeholder="Your Password">
-    <button type="submit">Register</button>
+    <div class="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl shadow-2xl p-8 relative z-10 backdrop-blur-md">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-extrabold text-white">Create Account</h2>
+            <p class="text-zinc-400 text-sm mt-2">Get started with your subscription today.</p>
+        </div>
 
-</form>
+        <form method="POST" action="" class="space-y-6">
+            {% csrf_token %}
+            
+            <div>
+                <label for="username" class="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">Username</label>
+                <div class="relative">
+                    <input type="text" id="username" name="username" placeholder="Username" required
+                           class="w-full bg-zinc-950 border border-zinc-800 focus:border-emerald-500 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition duration-200">
+                </div>
+            </div>
+
+            <div>
+                <label for="email" class="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">Email Address</label>
+                <div class="relative">
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required
+                           class="w-full bg-zinc-950 border border-zinc-800 focus:border-emerald-500 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition duration-200">
+                </div>
+            </div>
+            
+            <div>
+                <label for="password" class="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">Password</label>
+                <div class="relative">
+                    <input type="password" id="password" name="password" placeholder="••••••••" required
+                           class="w-full bg-zinc-950 border border-zinc-800 focus:border-emerald-500 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition duration-200">
+                </div>
+            </div>
+
+            <button type="submit" 
+                    class="w-full bg-emerald-400 hover:bg-emerald-300 text-black font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-400/10 hover:shadow-emerald-400/20 transition-all duration-200 text-sm">
+                Create Account
+            </button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-zinc-800/80">
+            <p class="text-zinc-400 text-sm text-center">
+                Already have an account? 
+                <a href="{% url 'account_login' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}" 
+                   class="text-emerald-400 hover:text-emerald-300 font-semibold transition duration-150">
+                    Sign in
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
 {% endblock %}

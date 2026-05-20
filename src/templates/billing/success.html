@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}
+Subscription Successful - SaaS Foundations
+{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto px-4 py-12 text-center relative">
+    <!-- Background glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl shadow-2xl p-8 md:p-12 relative z-10 backdrop-blur-md">
+        <!-- Success Icon -->
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-emerald-500/10 text-emerald-400 rounded-full mb-6">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+        </div>
+
+        <h1 class="text-4xl font-extrabold text-white mb-4">
+            Payment Successful!
+        </h1>
+        <p class="text-gray-400 mb-8 max-w-sm mx-auto text-sm">
+            Thank you for subscribing! Your transaction was completed successfully, and your account has been upgraded.
+        </p>
+
+        {% if user_sub %}
+        <!-- Subscription Details Card -->
+        <div class="bg-zinc-950/80 border border-zinc-850 rounded-xl p-6 text-left mb-8 max-w-md mx-auto">
+            <h2 class="text-base font-bold text-white mb-4 border-b border-zinc-800 pb-2">
+                Subscription Details
+            </h2>
+            
+            <div class="space-y-3 text-sm">
+                <div class="flex justify-between">
+                    <span class="text-gray-400">Plan:</span>
+                    <span class="text-white font-semibold">{{ user_sub.subscription.name }}</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-400">Status:</span>
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 capitalize">
+                        {{ user_sub.status }}
+                    </span>
+                </div>
+                {% if user_sub.current_period_end %}
+                <div class="flex justify-between">
+                    <span class="text-gray-400">Next Billing Date:</span>
+                    <span class="text-white font-semibold">{{ user_sub.current_period_end|date:"F d, Y" }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <a href="/" class="w-full sm:w-auto bg-emerald-400 hover:bg-emerald-300 text-black font-bold py-3 px-8 rounded-xl transition duration-200 shadow-lg shadow-emerald-400/10 hover:shadow-emerald-400/20">
+                Go to Home
+            </a>
+            <a href="{% url 'pricing' %}" class="w-full sm:w-auto bg-zinc-800 hover:bg-zinc-700 text-gray-300 font-semibold py-3 px-8 rounded-xl transition duration-200 border border-zinc-700">
+                View Plans
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

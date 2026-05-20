@@ -1,2 +1,16 @@
-{% load static %}
-<link href="{% static 'vendors/flowbite.min.css' %}" rel="stylesheet"/>
+<script>
+    // Tailwind CDN with dark mode class strategy + Flowbite plugin
+    window.tailwind = { config: {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                colors: {
+                    zinc: {
+                        850: '#1a1a23',
+                    }
+                }
+            }
+        }
+    }};
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>

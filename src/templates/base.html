@@ -1,19 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     {% include "base/meta.html" %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     {% include "base/css.html" %}
+    <style>
+        *, body { font-family: 'Inter', sans-serif; }
+        /* Force scrollbar dark so it doesn't flash white */
+        :root { color-scheme: dark; }
+    </style>
 </head>
 
-<body class="bg-black min-h-screen">
-
+<body class="bg-zinc-950 text-gray-100 min-h-screen antialiased">
     {% include "nav/navbar.html" %}
     {% include 'base/messages.html' with messages=messages %}
-        <div class="container mx-auto px-4 py-16">
-            {% block content %}
-            {% endblock %}
-        </div>
-
+    <div class="container mx-auto px-4 py-16">
+        {% block content %}
+        {% endblock %}
+    </div>
     {% include "base/js.html" %}
 </body>
 </html>

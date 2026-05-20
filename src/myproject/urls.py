@@ -31,6 +31,8 @@ from .views import (
 urlpatterns = [
     path("",home_page_view, name="home"), #index page -> root page
     path("checkout/sub-price/<str:price_id>/", checkout_views.product_price_redirect_view, name="checkout_sub_price"),
+    path("checkout/", checkout_views.checkout_redirect_view, name="checkout"),
+    path("checkout/success/", checkout_views.checkout_success_view, name="checkout_success"),
     path("login/", auth_views.login_view),
     path("register/", auth_views.register_view),
     path("working/",home_page_view),

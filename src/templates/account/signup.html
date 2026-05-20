@@ -1,0 +1,65 @@
+{% extends "allauth/layouts/base.html" %}
+{% load i18n %}
+{% load allauth %}
+
+{% block head_title %}Sign Up - SaaS Foundations{% endblock %}
+
+{% block content %}
+<div class="min-h-[80vh] flex items-center justify-center px-4 py-12">
+    <div class="w-full max-w-md relative">
+        <!-- Background glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-emerald-500/5 rounded-full blur-[80px] pointer-events-none"></div>
+
+        <div class="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl shadow-2xl p-8 relative z-10 backdrop-blur-md">
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-xl mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                    </svg>
+                </div>
+                <h1 class="text-3xl font-extrabold text-white">Create Account</h1>
+                <p class="text-zinc-400 text-sm mt-2">
+                    {% blocktranslate %}Already have an account? <a href="{{ login_url }}" class="text-emerald-400 hover:text-emerald-300 font-semibold transition">Sign in</a>{% endblocktranslate %}
+                </p>
+            </div>
+
+            {% if not SOCIALACCOUNT_ONLY %}
+            <form method="POST" action="{% url 'account_signup' %}" class="space-y-5">
+                {% csrf_token %}
+                {{ redirect_field }}
+
+                {% for field in form %}
+                <div>
+                    <label for="{{ field.id_for_label }}" class="block text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                        {{ field.label }}{% if field.field.required %} <span class="text-rose-400">*</span>{% endif %}
+                    </label>
+                    <input
+                        type="{{ field.field.widget.input_type }}"
+                        name="{{ field.html_name }}"
+                        id="{{ field.id_for_label }}"
+                        {% if field.value %}value="{{ field.value }}"{% endif %}
+                        placeholder="{% if field.html_name == 'email' %}you@example.com{% elif field.html_name == 'username' %}Username{% elif 'password' in field.html_name %}••••••••{% else %}{{ field.label }}{% endif %}"
+                        class="w-full bg-zinc-950 border border-zinc-800 focus:border-emerald-500 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition duration-200"
+                        {% if field.field.required %}required{% endif %}
+                    >
+                    {% for error in field.errors %}
+                    <p class="mt-1.5 text-xs text-rose-400">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+
+                <button type="submit" class="w-full bg-emerald-400 hover:bg-emerald-300 text-black font-bold py-3.5 rounded-xl shadow-lg shadow-emerald-400/10 hover:shadow-emerald-400/20 transition-all duration-200 text-sm">
+                    {% trans "Create Account" %}
+                </button>
+            </form>
+            {% endif %}
+
+            {% if SOCIALACCOUNT_ENABLED %}
+            <div class="mt-6 pt-6 border-t border-zinc-800/80">
+                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
