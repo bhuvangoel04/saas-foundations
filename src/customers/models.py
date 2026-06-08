@@ -13,7 +13,7 @@ from allauth.account.signals import (
 User = settings.AUTH_USER_MODEL
 
 class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE) # one stripe customer per user
+    user = models.OneToOneField(User, on_delete=models.CASCADE) # one razorpay customer per user
     is_active = models.BooleanField(default=True)
     razorpay_id = models.CharField(max_length=255, null=True, blank=True)
     init_email = models.EmailField(blank=True, null=True) # initial email available
