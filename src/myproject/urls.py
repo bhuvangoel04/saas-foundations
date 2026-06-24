@@ -44,4 +44,6 @@ urlpatterns = [
     path('profiles/', include('profiles.urls')), # loads all urls from profiles app 
     path("admin/", admin.site.urls),
     path("pricing/",subscription_views.subscription_price_view, name="pricing"),
+    path("api/", include("myproject.api_urls")),
 ]
+

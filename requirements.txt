@@ -11,3 +11,4 @@ django-widget-tweaks
 slippers
 razorpay
 python-dateutil
+djangorestframework

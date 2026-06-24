@@ -71,6 +71,8 @@ INSTALLED_APPS = [
     "subscriptions",
     "checkouts",
     # third party apps
+    "rest_framework",
+    "rest_framework.authtoken",
     "allauth_ui",
     'allauth',
     'allauth.account',
@@ -211,3 +213,14 @@ STORAGES = {
 ## when moving to production
 # if not DEBUG:
 #     STATIC_ROOT = BASE_DIR / "prod-cdn"
+
+# Django REST Framework Settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
