@@ -152,6 +152,10 @@ src/
 └── manage.py        # Django management script
 ```
 
+## Author
+
+- **Bhuvan Goel** - [bhuvangoel04](https://github.com/bhuvangoel04)
+
 ## License
 
-MIT
+MIT
